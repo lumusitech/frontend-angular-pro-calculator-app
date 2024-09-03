@@ -9,6 +9,10 @@ export const routes: Routes = [
       //   './calculator/views/calculator-view/calculator-view.component'
       // ).then((c) => c.CalculatorViewComponent),
       //? with this change:
-      import('./calculator/views/calculator-view/calculator-view.component'),
+      import('@/calculator/views/calculator-view/calculator-view.component'),
+  },
+  {
+    path: '**',
+    redirectTo: 'calculator',
   },
 ];
