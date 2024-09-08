@@ -3,6 +3,9 @@ import {
   Component,
   HostBinding,
   input,
+  output,
+  viewChild,
+  type ElementRef,
 } from '@angular/core';
 
 @Component({
@@ -20,6 +23,10 @@ import {
   },
 })
 export class CalculatorButtonComponent {
+  // output property
+  public onClick = output<string>();
+  public contentValue = viewChild<ElementRef<HTMLButtonElement>>('button');
+
   // property
   public isCommand = input(false, {
     //? transform method is called before the signal value is set, before ngOnInit
@@ -42,5 +49,13 @@ export class CalculatorButtonComponent {
   //? w-2/4 is a GLOBAL tailwind class, so we can use it in any component
   @HostBinding('class.w-2/4') get doubleSizeStyle() {
     return this.isDoubleSize();
+  }
+
+  public handleClick() {
+    if (!this.contentValue()?.nativeElement) return;
+
+    const value = this.contentValue()!.nativeElement.innerText;
+
+    this.onClick.emit(value.trim());
   }
 }
