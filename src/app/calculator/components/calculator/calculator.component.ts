@@ -46,7 +46,7 @@ export class CalculatorComponent {
   // }
 
   public handleClick(key: string) {
-    console.log({ key });
+    this.calculatorService.constructNumber(key);
   }
 
   // @HostListener('document:keyup', ['$event']) // Deprecated
@@ -55,7 +55,7 @@ export class CalculatorComponent {
       Enter: '=',
       Escape: 'C',
       Clear: 'C',
-      Backspace: 'C',
+      // Backspace: 'C',
       Delete: 'C',
       '*': 'x',
       '/': '÷',
