@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
+  let compiled: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -12,6 +13,9 @@ describe('AppComponent', () => {
     // this is a wrapper for the component
     //it gives us access to the component instance and other utils functions
     fixture = TestBed.createComponent(AppComponent);
+
+    // this is a wrapper for the current native html
+    compiled = fixture.nativeElement as HTMLElement;
   });
 
   it('should create the app', () => {
@@ -39,10 +43,9 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('frontend-angular-zoneless-calculator-app');
   });
 
-  it('should has a router-outlet', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    console.log(compiled);
-
+  it('should render a router-outlet', () => {
     expect(compiled.querySelector('router-outlet')).toBeTruthy();
+    // or
+    // expect(compiled.querySelector('router-outlet')).not.toBeNull();
   });
 });
