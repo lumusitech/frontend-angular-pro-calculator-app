@@ -48,4 +48,28 @@ describe('AppComponent', () => {
     // or
     // expect(compiled.querySelector('router-outlet')).not.toBeNull();
   });
+
+  it('should render a router-outlet wrapped with a css classes', () => {
+    const divElement = compiled.querySelector('div');
+
+    //use split to transform a string into an array
+    const divClasses = divElement?.classList.value.split(' ');
+    const mustHaveClasses =
+      'min-w-screen min-h-screen bg-slate-600 flex items-center justify-center px-5 py-5'.split(
+        ' '
+      );
+
+    expect(divElement).toBeTruthy();
+
+    // if any class is missing from the mustHaveClasses array, it will fail
+    // But, if any developer add a new css class, it will fail
+    // divElement?.classList.forEach((className) => {
+    //   expect(mustHaveClasses).toContain(className);
+    // });
+
+    // Better for admit added new classes
+    mustHaveClasses.forEach((className) => {
+      expect(divClasses).toContain(className);
+    });
+  });
 });
