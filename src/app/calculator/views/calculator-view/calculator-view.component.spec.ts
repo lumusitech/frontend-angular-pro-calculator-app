@@ -20,8 +20,6 @@ describe(`CalculatorViewComponent`, () => {
   });
 
   it('should create the app', () => {
-    console.log(compiled);
-
     expect(compiled).toBeTruthy();
     expect(component).toBeTruthy();
   });
